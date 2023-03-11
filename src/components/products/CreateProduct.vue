@@ -17,10 +17,7 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text">Description</span>
-          <textarea
-            class="form-control"
-            v-model="product.description"
-          ></textarea>
+          <textarea class="form-control" v-model="product.description"></textarea>
         </div>
 
         <div class="input-group mb-3">
@@ -30,18 +27,14 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text">Category</span>
-          <select class="form-select">
-            <option value="testoptionvalue">test option</option>
+          <select class="form-select" v-model="product.category_id">
+            <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
           </select>
         </div>
 
         <div class="input-group mt-4">
-          <button type="button" class="btn btn-primary">Create product</button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            @click="this.$router.push('/products')"
-          >
+          <button type="button" class="btn btn-primary" @click="createProduct()">Create product</button>
+          <button type="button" class="btn btn-danger" @click="this.$router.push('/products')">
             Cancel
           </button>
         </div>
@@ -51,6 +44,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "CreateProduct",
   data() {
@@ -65,8 +59,28 @@ export default {
       categories: [],
     };
   },
+  mounted() {
+    axios.get('http://localhost/categories')
+      .then(response => {
+        this.categories = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  methods: {
+    createProduct() {
+      axios.post('http://localhost/products', this.product)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push('/products');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

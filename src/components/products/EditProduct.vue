@@ -17,10 +17,7 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text">Description</span>
-          <textarea
-            class="form-control"
-            v-model="product.description"
-          ></textarea>
+          <textarea class="form-control" v-model="product.description"></textarea>
         </div>
 
         <div class="input-group mb-3">
@@ -30,21 +27,16 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text">Category</span>
-          <select class="form-select">
-            <option value="testoptionvalue">test option       
-            </option>
+          <select class="form-select" v-model="product.category_id">
+            <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
           </select>
         </div>
 
         <div class="input-group mt-4">
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" @click="updateProduct()">
             Save changes
           </button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            @click="this.$router.push('/products')"
-          >
+          <button type="button" class="btn btn-danger" @click="this.$router.push('/products')">
             Cancel
           </button>
         </div>
@@ -54,6 +46,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "EditProduct",
   props: {
@@ -71,9 +64,37 @@ export default {
       },
       categories: [],
     };
-  }  
-};
+  }, methods: {
+    getProduct() {
+     axios.get('http://localhost/products/'+this.id)
+        .then((response) => {
+          this.product = response.data;
+          console.log(this.product);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    updateProduct() {
+      axios.put('http://localhost/products/'+this.id,this.product)
+        .then((response) => {
+          this.$router.push("/products");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  }, mounted() {
+    axios.get('http://localhost/categories')
+      .then(response => {
+        this.categories = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    this.getProduct();
+  },
+}
 </script>
 
-<style>
-</style>
+<style></style>

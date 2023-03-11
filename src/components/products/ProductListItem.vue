@@ -5,6 +5,7 @@
         <img :src="product.image" :alt="product.title" :title="product.title" />
         <div class="float-start">
           <p>{{ product.name }}</p>
+
           <p>
             <small>{{ product.category.name }}</small>
           </p>
@@ -13,8 +14,7 @@
       </div>
       <div class="card-footer">
         <button class="btn btn-warning" @click="editProduct(product.id)">
-          Edit</button
-        >&nbsp;&nbsp;
+          Edit</button>&nbsp;&nbsp;
         <button class="btn btn-danger" @click="deleteProduct(product.id)">
           Delete
         </button>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "ProductListItem",
   props: {
@@ -31,16 +32,24 @@ export default {
   },
   methods: {
     deleteProduct(id) {
-      alert("product not deleted: " + id);
-      // use axios to delete the product
+      axios.delete('http://localhost/products/' + id)
+        .then(response => {
+          console.log(response);
+          this.$emit('productDeleted');
+          this.$router.push('/products');
+      this.$router.go;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     editProduct(id) {
-      alert("product not edited: " + id);
-      // use the router to navigate to the editproduct route and pass the id
+      this.$router.push('/editproduct/' + id ); 
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
+
+}
