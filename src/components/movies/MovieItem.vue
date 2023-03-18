@@ -5,8 +5,9 @@
                     <div class=" card" style="width: 100%; height: 100%;">
                         <div class="card-body">
                             <h5 class="card-title">{{movie.title}}</h5>
+                            
                             <div class="card-body">
-                                <img src="/images/{{movie.image}}" alt="{{movie.title}}"
+                                <img :src="'/images/' + movie.image" alt="{{movie.title}}"
                                     class="img-fluid " style="height: 100%;">
                             </div>
                         </div>
