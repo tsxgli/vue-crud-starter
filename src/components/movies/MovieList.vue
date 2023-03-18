@@ -1,10 +1,12 @@
 <template>
     <section>
       <div class="container">
-        <h2 class="mt-3 mt-lg-5">Movies</h2>
+        <h2 class="mt-3">Movies</h2>
 
-        <div class="row mt-3">
-          <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" @movieDeleted="reloadMovies" />
+        <div class="row">
+          <div v-for="movie in movies" class="col" >
+            <movie-item  :key="movie.id" :movie="movie" @movieDeleted="reloadMovies"/>
+          </div>
         </div>
       </div>
     </section>

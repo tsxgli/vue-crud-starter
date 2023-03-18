@@ -1,14 +1,13 @@
 <template lang="">
     <div>
-        <div class="col-lg-3 col-md-4 m-3 col-sm-6" style="text-decoration:none;">
-                <a href="/detail?{{movie.id}}" >
-                    <div class=" card" style="width: 100%; height: 100%;">
+        <div class="m-3 col-sm-6">
+            <router-link :to="/movies/ + movie._id">
+                    <div class=" card" style="width:20vw; height: 100%; min-height:300px; min-width:180px; ">
                         <div class="card-body">
                             <h5 class="card-title">{{movie.title}}</h5>
-                            
                             <div class="card-body">
                                 <img :src="'/images/' + movie.image" alt="{{movie.title}}"
-                                    class="img-fluid " style="height: 100%;">
+                                    class="img-fluid " style="min-height: 10vh;">
                             </div>
                         </div>
                         <div class="card-footer">
@@ -17,7 +16,7 @@
                             </span>
                         </div>
                     </div>
-                 </a>
+                </router-link>
         </div>
     </div>
 </template> 
