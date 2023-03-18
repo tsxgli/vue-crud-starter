@@ -4,42 +4,43 @@
       <h2 class="mt-3 mt-lg-5">Products</h2>
       <button type="button" class="btn btn-primary mt-3" @click="this.$router.push('/createproduct');">
         Add product
-      </button>
+      </button> 
       <div class="row mt-3">
-        <product-list-item v-for="product in products" :key="product.id" :product="product" @productDeleted="reloadProducts" />
+        <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" @movieDeleted="reloadMovies" />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import ProductListItem from "./ProductListItem.vue";
+
 import axios from "axios";
+import MovieItem from "../movies/MovieItem.vue";
 
 export default {
   name: "ProductList",
   components: {
-    ProductListItem,
-  },
+    MovieItem,
+},
   data() {
     return {
-      products: [],
+      movies: [],
     };
   },
   mounted() {
     this.fetchProducts(); 
 },methods:{
   fetchProducts() {
-      axios.get('http://localhost/products')
+      axios.get('http://localhost/movies')
         .then(response => {
-          this.products = response.data;
+          this.movies = response.data;
         })
         .catch(error => {
           console.log(error);
         });
     },
-    reloadProducts() {
-      this.fetchProducts();
+    reloadMovies() {
+      this.fetchMovies();
     },
 }
 
