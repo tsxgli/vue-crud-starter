@@ -12,16 +12,14 @@
           <router-link to="/products" class="nav-link" active-class="active">Products</router-link>
         </li>
         <li class="nav-item dropdown">
-          <router-link class="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Genre
-          </router-link>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <router-link class="dropdown-item" to="/genre/action">Action</router-link>
-            <router-link class="dropdown-item" to="/genre/comedy">Comedy</router-link>
-            <router-link class="dropdown-item" to="/genre/drama">Drama</router-link>
-            <router-link class="dropdown-item" to="/genre/thriller">Thriller</router-link>
-          </div>
+          <select name="genres" id="genreDropdown" @change="navigateToGenre">
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="thriller">Thriller</option>
+          </select>
         </li>
       </ul>
       <div class="nav-item dropdown">
@@ -36,14 +34,23 @@
         </div>
       </div>
     </div>
-
+    <div>
+  
+</div>
   </nav>
 </template>
 
 <script>
 export default {
   name: "Navigation",
+  methods: {
+    navigateToGenre() {
+      let genre = document.getElementById("genreDropdown").value;
+      this.$router.push("/genre/" + genre);
+    },
+  },
 };
+
 </script>
 
 <style></style>

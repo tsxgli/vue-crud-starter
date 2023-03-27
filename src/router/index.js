@@ -6,6 +6,7 @@ import CreateProduct from '../components/products/CreateProduct.vue';
 import EditProduct from '../components/products/EditProduct.vue';
 import MovieList from '../components/movies/MovieList.vue';
 import Detail from '../components/movies/Detail.vue';
+import Genre from '../components/movies/Genre.vue';
 const routes = [
   { path: '/', component: Home },
   { path: '/products', component: ProductList },
@@ -13,6 +14,7 @@ const routes = [
   { path: '/editproduct/:id', component: EditProduct, props: true  },
   { path: '/movies', component: MovieList },
   { path: '/movies/:id', component: Detail, props: true  },
+  { path: '/genre/:genre', component: Genre, props: true  },
 ];
 
 const router = createRouter({
