@@ -64,9 +64,9 @@ export default {
             axios
                 .get('http://localhost/movies/'+id)
                 .then((response) => {
-                    this.movie = response.data;
+                    this.movie = response.data[0];
                     console.log(response.data);
-                    console.log(this.movie);
+                   
                 })
                 .catch((error) => {
                     console.log(error);
