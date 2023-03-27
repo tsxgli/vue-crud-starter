@@ -1,7 +1,7 @@
 <template>
     <section>
       <div class="container">
-        <h2 class="mt-3">{{ $route.params.genre }}</h2>
+        <h2 class="mt-3 text-uppercase" >{{ $route.params.genre }} movies</h2>
   
         <div class="row">
           <div v-for="movie in movies" class="col">
@@ -11,10 +11,10 @@
       </div>
     </section>
   </template>
-  
+   
   <script>
   import MovieItem from "./MovieItem.vue";
-  import axios from "axios";
+  import axios from 'axios';
   
   export default {
     name: "Genres",
@@ -44,6 +44,7 @@
       },
       reloadMovies() {
         this.fetchGenreMovies();
+    
       },
     },
   };

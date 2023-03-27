@@ -13,11 +13,10 @@
         </li>
         <li class="nav-item dropdown">
           <select name="genres" id="genreDropdown" @change="navigateToGenre">
+            <option value="all">None selected</option>
             <option value="action">Action</option>
             <option value="comedy">Comedy</option>
             <option value="drama">Drama</option>
-            <option value="horror">Horror</option>
-            <option value="romance">Romance</option>
             <option value="thriller">Thriller</option>
           </select>
         </li>
@@ -29,8 +28,8 @@
         </router-link>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <router-link class="dropdown-item" name="admin" to="/admin/index">Admin settings</router-link>
-          <router-link class="dropdown-item" style="background:#F08181;" to="/logout">Log out</router-link>
+          <router-link class="dropdown-item" name="admin" to="#">Admin settings</router-link>
+          <router-link class="dropdown-item" style="background:#F08181;" to="#">Log out</router-link>
         </div>
       </div>
     </div>
