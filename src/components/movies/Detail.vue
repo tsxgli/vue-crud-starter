@@ -7,7 +7,7 @@
             </div>
             <div class="col">
                 <h3 class="pr-1">Description</h3>
-                <p class="text-left ml-20">{{ movie.description }}</p>
+                <p class="text-left ml-20" v-html="movie.description"></p>
                 <div class="row">
                     <h3>Director</h3>
                     <p>{{ movie.director }}</p>
