@@ -8,6 +8,9 @@ import MovieList from '../components/movies/MovieList.vue';
 import Detail from '../components/movies/Detail.vue';
 import Genre from '../components/movies/Genre.vue';
 import Login from '../components/Login.vue';
+import Register from '../components/login/register/Register.vue';
+import Cart from '../components/checkout/Cart.vue';
+
 const routes = [
   { path: '/', component: Home },
   { path: '/products', component: ProductList },
@@ -17,6 +20,8 @@ const routes = [
   { path: '/movies/:id', component: Detail, props: true  },
   { path: '/genre/:genre', component: Genre, props: true  },
   { path: '/login', component: Login },
+  { path: '/cart', component: Cart },
+  { path: '/register', component: Register}
 ];
 
 const router = createRouter({

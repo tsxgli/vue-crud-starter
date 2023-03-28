@@ -28,7 +28,8 @@
                     <h3>Price</h3>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn btn-warning" name="buyMovieBtn">{{ movie.price }}</button>
+                    <button type="submit" router class="btn btn-warning" @click="addToCart" name="buyMovieBtn">{{
+                        movie.price }}</button>
                 </div>
             </div>
         </div>
@@ -42,7 +43,6 @@ export default {
     name: 'Detail',
 
     data() {
-        
         return {
             movie: {
                 id: 0,
@@ -60,17 +60,20 @@ export default {
     },
     methods: {
         getMovie() {
-            const id= this.$route.params.id;
+            const id = this.$route.params.id;
             axios
-                .get('http://localhost/movies/'+id)
+                .get('http://localhost/movies/' + id)
                 .then((response) => {
                     this.movie = response.data[0];
                     console.log(response.data);
-                   
+
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        addToCart() {
+            this.$emit('add-to-cart', this.movie);
         },
     },
     mounted() {
