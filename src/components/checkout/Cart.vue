@@ -10,31 +10,29 @@
                                   <div class="p-5">
                                       <div class="d-flex justify-content-between align-items-center mb-5">
                                           <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-
                                       </div>
                                       <hr class="my-4">                                           
                                               <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                   <div class="col-md-2 col-lg-2 col-xl-2">
-                                                      <img src=""
-                                                          alt="" class="img-fluid "
-                                                          style="height: 100%;">
+                                                    <img :src="'/images/' + movie.image" :alt="movie.title" class="img-fluid"   style="height: 100%;">
                                                   </div>
                                                   <div class="col-md-3 col-lg-3 col-xl-3">
                                                       <h6 class="text-muted">Movie</h6>
                                                       <h6 class="text-black mb-0">
-                                                        
+                                                            {{ this.movie.title }}
                                                       </h6>
                                                   </div>
                                                   <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                       <h6 class="text-muted">Price</h6>
                                                       <h6 class="text-black mb-0">
+                                                        {{movie.price}}
                                                            </h6>
                                                   </div>
                                               </div>
                                               <hr class="my-4">
                                           <div class="pt-5">
-                                              <h6 class="mb-0"><i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
-                                              </h6>
+                                              <button class="mb-0 btn btn-primary"><i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
+                                              </button>
                                           </div>
                                   </div>
                               </div>
@@ -47,7 +45,7 @@
                                       <div class="mb-5">
                                           <div class="form-outline">
                                               <input type="email" name="checkoutEmail" id="checkoutEmailInput"
-                                                  class="form-control form-control-lg" />
+                                                  class="form-control form-control-lg" required />
                                               <label class="form-label" for="checkoutEmailInput">Enter your
                                                   email</label>
                                           </div>
@@ -72,7 +70,6 @@
                                           </h5>
                                           <h5></h5>
                                       </div>
-                                     
                                           <button name="payBtn" class="btn btn-dark btn-block btn-lg"
                                               data-mdb-ripple-color="dark">Pay</button>
                                               <input type="hidden" name="movieId" value="">
@@ -86,7 +83,6 @@
       </div>
   </div>
 </template>
-  
   <script>
   import axios from "axios";
   
@@ -94,23 +90,32 @@
     name: "Cart",
     data() {
       return {
-        cart: [],
-      };
+            movie: {
+                id: 0,
+                title: '',
+                description: '',
+                director: '',
+                dateProduced: '',
+                genre: '',
+                rating: '',
+                price: 0,
+                image: '',
+            },
+        };
     },
 
     methods: {
-      addToCart(movie) {},
-      clearCart() {
-        // clear the cart data from sessionStorage
-        sessionStorage.removeItem("cart");
-        this.cart = [];
-      },
+
       fetchMovie() {
-        axios.get("http://localhost/movies" + movie.id).then((response) => {
-          this.cart = response.data;
+        const movieId = localStorage.getItem('movieId');
+        axios.get("http://localhost/movies/" + movieId).then((response) => {
+          this.movie = response.data[0];
           console.log(response.data);
         });
       },
+    },
+    mounted() {
+      this.fetchMovie();
     },
   };
   </script>

@@ -72,8 +72,9 @@ export default {
                 });
         },
         addToCart() {
-            this.$emit('add-to-cart', this.movie.id);
             this.$router.push('/cart'); // navigate to /cart
+            localStorage.clear();
+            localStorage.setItem('movieId', this.$route.params.id);
         },
     },
     mounted() {
