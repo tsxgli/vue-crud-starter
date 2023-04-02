@@ -31,7 +31,7 @@
                                               </div>
                                               <hr class="my-4">
                                           <div class="pt-5">
-                                              <button class="mb-0 btn btn-primary"><i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
+                                              <button class="mb-0 btn btn-primary" @click="backToShop()" ><i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
                                               </button>
                                           </div>
                                   </div>
@@ -66,13 +66,12 @@
                                           <label class="form-label" for="">Total price
                                           </label>
                                           <h5 class="text-uppercase">
-
+                                                {{movie.price}}     
                                           </h5>
                                           <h5></h5>
                                       </div>
                                           <button name="payBtn" class="btn btn-dark btn-block btn-lg"
                                               data-mdb-ripple-color="dark">Pay</button>
-                                              <input type="hidden" name="movieId" value="">
                                   </div>
                               </div>
                           </div>
@@ -83,13 +82,13 @@
       </div>
   </div>
 </template>
-  <script>
-  import axios from "axios";
-  
-  export default {
+<script>
+import axios from "axios";
+
+export default {
     name: "Cart",
     data() {
-      return {
+        return {
             movie: {
                 id: 0,
                 title: '',
@@ -106,21 +105,29 @@
 
     methods: {
 
-      fetchMovie() {
-        const movieId = localStorage.getItem('movieId');
-        axios.get("http://localhost/movies/" + movieId).then((response) => {
-          this.movie = response.data[0];
-          console.log(response.data);
-        });
-      },
+        fetchMovie() {
+            const movieId = localStorage.getItem('movieId');
+            axios.get("http://localhost/movies/" + movieId).then((response) => {
+                this.movie = response.data[0];
+                console.log(response.data);
+            });
+        },
+        checkout() {
+            axios.post("http://localhost/checkout", this.movie).then((response) => {
+                console.log(response.data);
+            });
+        },
+        backToShop() {
+            window.history.back();
+        },
     },
     mounted() {
-      this.fetchMovie();
+        this.fetchMovie();
     },
-  };
-  </script>
+};
+</script>
   
-  <style>
-  /* your styles */
-  </style>
+<style>
+/* your styles */
+</style>
   
