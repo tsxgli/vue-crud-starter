@@ -21,7 +21,7 @@
     components: {
       MovieItem,
     },
-    data() {
+    data() { 
       return {
         movies: [],
       };
