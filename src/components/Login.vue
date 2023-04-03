@@ -6,8 +6,8 @@
         <div class="col-md-6">
           <form>
             <div class="mb-3">
-              <label for="inputUsername" class="form-label">Username</label>
-              <input id="inputUsername" v-model="username" type="text" class="form-control" />
+              <label for="inputemail" class="form-label">Email</label>
+              <input id="inputemail" v-model="email" type="text" class="form-control" />
             </div>
             <div class="mb-3">
               <label for="inputPassword" class="form-label">Password</label>
@@ -34,15 +34,15 @@ export default {
   name: "Login",
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       errorMessage: ""
     };
   },
   methods: {
     login() {
-      this.store.login(this.username, this.password).then(() => {
-        this.$router.push('/products');
+      this.store.login(this.email, this.password).then(() => {
+        this.$router.push('/movies');
       }).catch((error) => {
         this.errorMessage = error;
       });

@@ -4,7 +4,7 @@ import axios from "../axios-auth.js";
 export const useUserSessionStore = defineStore("userSession", {
   state: () => ({
     jwt: "",
-    username: "",
+    email: "",
   }),
   getters: {
     isAuthenticated: (state) => state.jwt !== "",
@@ -12,21 +12,21 @@ export const useUserSessionStore = defineStore("userSession", {
   actions: {
     localLogin() {
         this.jwt = localStorage.getItem("jwt");
-        this.username = localStorage.getItem("username");// localStorage['username']
+        this.email = localStorage.getItem("email");// localStorage['email']
     },
-    login(username, password) {
+    login(email, password) {
       return new Promise((resolve, reject) => {
         axios
           .post("/users/login", {
-            username: username,
+            email: email,
             password: password,
           })
           .then((response) => {
             this.jwt = response.data.jwt;
-            this.username = response.data.username;
+            this.email = response.data.email;
 
             localStorage.setItem("jwt", this.jwt);
-            localStorage.setItem("username", this.username);
+            localStorage.setItem("email", this.email);
 
             axios.defaults.headers.common["Authorization"] =
               "Bearer" + this.jwt;
@@ -42,9 +42,9 @@ export const useUserSessionStore = defineStore("userSession", {
     },
     logout() {
       this.jwt = "";
-      this.username = "";
+      this.email = "";
       localStorage.removeItem("jwt");
-      localStorage.removeItem("username");
+      localStorage.removeItem("email");
       delete axios.defaults.headers.common["Authorization"];
     },
 
