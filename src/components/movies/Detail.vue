@@ -66,14 +66,15 @@ export default {
                 .then((response) => {
                     this.movie = response.data[0];
                     console.log(response.data);
-
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
         addToCart() {
-            this.$emit('add-to-cart', this.movie);
+            this.$router.push('/cart'); // navigate to /cart
+            localStorage.clear();
+            localStorage.setItem('movieId', this.$route.params.id);
         },
     },
     mounted() {
@@ -81,6 +82,3 @@ export default {
     },
 };
 </script>
-  
-<style lang=""></style>
-  

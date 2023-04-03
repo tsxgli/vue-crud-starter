@@ -11,8 +11,9 @@ import Login from '../components/Login.vue';
 import Register from '../components/login/register/Register.vue';
 import Cart from '../components/checkout/Cart.vue';
 
+
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Login },
   { path: '/products', component: ProductList },
   { path: '/createproduct', component: CreateProduct },
   { path: '/editproduct/:id', component: EditProduct, props: true  },
