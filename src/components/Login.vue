@@ -6,8 +6,8 @@
         <div class="col-md-6">
           <form>
             <div class="mb-3">
-              <label for="inputUsername" class="form-label">Username</label>
-              <input id="inputUsername" v-model="username" type="text" class="form-control" />
+              <label for="inputemail" class="form-label">email</label>
+              <input id="inputemail" v-model="email" type="text" class="form-control" />
             </div>
             <div class="mb-3">
               <label for="inputPassword" class="form-label">Password</label>
@@ -20,50 +20,51 @@
     </div>
   </section> -->
   <section class="vh-100 gradient-custom">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
+    <div class="alert alert-danger">{{ errorMessage }}</div>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
 
-                                <div class="mb-md-5 mt-md-4 pb-5">
+              <div class="mb-md-5 mt-md-4 pb-5">
 
-                                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                    <br>
-                                    <div class="form-outline form-white mb-4">
-                                      <input id="inputUsername" v-model="username" type="text" class="form-control" />
-                                        <label class="form-label" for="email">Email</label>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                          <input type="password" v-model="password" class="form-control" id="inputPassword" />
-                                            <div class="input-group-append">
-                                                <button type="button" class="btn btn-secondary ml-2"
-                                                  @click="togglePassword()"  id="passwordToggleButton">
-                                                    Show password
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <label for="password" class="form-control-label">Password</label>
-                                    </div>
-                        
-                                    <button class="btn btn-outline-light btn-lg px-5" name="loginButton"
-                                        id="loginButton" @click="login" type="submit">Login</button>
-                                </div>
-                                <div>
-                                    <p class="mb-0">Don't have an account?
-                                        <a @click="register()" class="text-white-50 fw-bold">Sign Up</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <br>
+                <div class="form-outline form-white mb-4">
+                  <input id="inputemail" v-model="email" type="text" class="form-control" />
+                  <label class="form-label" for="email">Email</label>
                 </div>
+
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="password" v-model="password" class="form-control" id="inputPassword" />
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-secondary ml-2" @click="togglePassword()"
+                        id="passwordToggleButton">
+                        Show password
+                      </button>
+                    </div>
+                  </div>
+                  <label for="password" class="form-control-label">Password</label>
+                </div>
+
+                <button class="btn btn-outline-light btn-lg px-5" name="loginButton" id="loginButton" @click="login"
+                  type="submit">Login</button>
+              </div>
+              <div>
+                <p class="mb-0">Don't have an account?
+                  <a @click="register()" class="text-white-50 fw-bold">Sign Up</a>
+                </p>
+              </div>
+
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -79,15 +80,15 @@ export default {
   name: "Login",
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       errorMessage: ""
     };
   },
   methods: {
     login() {
-      this.store.login(this.username, this.password).then(() => {
-        this.$router.push('/products');
+      this.store.login(this.email, this.password).then(() => {
+
       }).catch((error) => {
         this.errorMessage = error;
       });
@@ -103,6 +104,9 @@ export default {
         x.type = "password";
       }
     }
+  },
+  mounted() {
+
   }
 };
 </script>
