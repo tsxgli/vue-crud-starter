@@ -88,6 +88,9 @@ export default {
   methods: {
     login() {
       this.store.login(this.email, this.password).then(() => {
+        if(this.store.isAuthenticated) {
+          this.$router.push('/movies');
+        }
 
       }).catch((error) => {
         this.errorMessage = error;
@@ -105,9 +108,6 @@ export default {
       }
     }
   },
-  mounted() {
-
-  }
 };
 </script>
 

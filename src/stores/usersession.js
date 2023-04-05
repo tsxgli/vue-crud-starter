@@ -53,5 +53,6 @@ export const useUserSessionStore = defineStore("userSession", {
       localStorage.removeItem("email");
       delete axios.defaults.headers.common["Authorization"];
     },
+    
   },
 });

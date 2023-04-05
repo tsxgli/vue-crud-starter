@@ -54,7 +54,6 @@ export default {
                 rating: '',
                 price: 0,
                 image: '',
-
             },
         };
     },
