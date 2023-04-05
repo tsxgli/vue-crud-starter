@@ -11,14 +11,8 @@ export const useUserSessionStore = defineStore("userSession", {
   },
   actions: {
     localLogin() {
-      // Load data from local storage
-      this.jwt = localStorage.getItem("jwt") || "";
-      this.email = localStorage.getItem("email") || "";
-      // Check if jwt and email are both empty, if not, set default values
-      if (!this.jwt && !this.email) {
-        this.jwt = "";
-        this.email = ""; 
-      }
+        this.jwt = localStorage.getItem("jwt");
+        this.email = localStorage.getItem("email");// localStorage['email']
     },
     login(email, password) {
       return new Promise((resolve, reject) => {
