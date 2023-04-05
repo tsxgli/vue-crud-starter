@@ -57,7 +57,7 @@
                                       <div class="form-group">
                                           <div class="input-group">
                                               <input type="password" class="form-control form-control-lg" v-model="this.password"
-                                                  id="passwordInput" name="passwordRegister" required
+                                                  id="passwordInput" name="passwordInput" required
                                                   placeholder="Enter your password">
                                               <div class="input-group-append">
                                                   <button type="button" class="btn btn-secondary ml-2"
@@ -130,22 +130,22 @@ export default {
                     if (error) {
                         this.errorMessage = error.response.data.message;
                     }
-
                     console.log(error);
                 });
+        }, togglePassword() {
+            var x = document.getElementById("passwordInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        },
+        goBack() {
+            this.$router.push('/login')
         }
+
     },
-    togglePassword() {
-        var x = document.getElementById("passwordInput");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    },
-    goBack() {
-        this.$router.push('/login')
-    }
+
 }
 
 </script>

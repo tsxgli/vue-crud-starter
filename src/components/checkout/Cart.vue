@@ -11,7 +11,7 @@
                                       <div class="d-flex justify-content-between align-items-center mb-5">
                                           <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                                       </div>
-                                      <hr class="my-4">                                           
+                                      <hr class="my-4">                   
                                               <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                   <div class="col-md-2 col-lg-2 col-xl-2">
                                                     <img :src="'/images/' + movie.image" :alt="movie.title" class="img-fluid"   style="height: 100%;">
@@ -70,7 +70,7 @@
                                           </h5>
                                           <h5></h5>
                                       </div>
-                                          <button name="payBtn" class="btn btn-dark btn-block btn-lg"
+                                          <button name="payBtn" @click="checkout()" class="btn btn-dark btn-block btn-lg"
                                               data-mdb-ripple-color="dark">Pay</button>
                                   </div>
                               </div>
@@ -104,7 +104,6 @@ export default {
     },
 
     methods: {
-
         fetchMovie() {
             const movieId = localStorage.getItem('movieId');
             axios.get("http://localhost/movies/" + movieId).then((response) => {
@@ -113,13 +112,14 @@ export default {
             });
         },
         checkout() {
-            axios.post("http://localhost/checkout", this.movie).then((response) => {
+            axios.post("http://localhost/sendMail", this.movie).then((response) => {
                 console.log(response.data);
             });
         },
         backToShop() {
             window.history.back();
         },
+
     },
     mounted() {
         this.fetchMovie();
