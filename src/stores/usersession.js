@@ -18,7 +18,7 @@ export const useUserSessionStore = defineStore("userSession", {
         this.jwt = localStorage.getItem("jwt");
         this.email = localStorage.getItem("email");
         this.userId = localStorage.getItem("id");
-
+        axios.defaults.headers.common["Authorization"] = "Bearer " + this.jwt;
         // Call the checkAdmin method to determine the user's admin status
         try {
           const response = await this.checkAdmin(this.jwt, this.userId);
@@ -26,8 +26,7 @@ export const useUserSessionStore = defineStore("userSession", {
           console.log("Admin status: " + response.data.isAdmin);
         } catch (error) {
           console.error(error);
-        } 
-        axios.defaults.headers.common["Authorization"] = "Bearer " + this.jwt;
+        }
       }
     },
     login(email, password) {
@@ -47,7 +46,7 @@ export const useUserSessionStore = defineStore("userSession", {
             localStorage.setItem("email", this.email);
             localStorage.setItem("id", this.userId);
 
-            axios.defaults.headers.common["Authorization"] = 
+            axios.defaults.headers.common["Authorization"] =
               "Bearer " + this.jwt;
             console.log("logged in automatically");
             console.log(response.data.jwt);
@@ -69,8 +68,8 @@ export const useUserSessionStore = defineStore("userSession", {
     checkAdmin(jwt, id) {
       return axios.post("/users/checkAdmin/" + id, null, {
         headers: {
-          Authorization: "Bearer " + jwt
-        }
+          Authorization: "Bearer " + jwt,
+        },
       });
     },
   },

@@ -27,7 +27,7 @@ const routes = [
   { path: '/cart', component: Cart },
   { path: '/register', component: Register},
   { path: '/admin/createuser', component: CreateUser},
-  { path: '/edituser/:id', component: EditUser, props: true  },
+  { path: '/admin/editUser/:id', component: EditUser, props: true  },
   { path: '/admin/manageusers', component: ManageUsers},
 ];
 

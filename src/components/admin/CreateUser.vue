@@ -39,7 +39,7 @@
               <label for="birthdateInput">BirthDate</label>
               <input type="date" id="birthdateInput" v-model="this.birthdate" class="form-control" name="birthdateRegister" required placeholder="Enter your birthdate">
             </div>
-            <div class="form-group">
+            <div class="form-group">e
               <label for="isAdminInput">User Type</label>
               <br>
               <select name="isAdmin" v-model="this.isAdmin" id="isAdmin">
@@ -47,12 +47,10 @@
                 <option value="1">Admin</option>
               </select>
              
-            <div class="d-flex justify-content-center">
-              <button name="registerBtn" type="submit" class="btn btn-warning btn-lg mt-4" @click="addUser()">Submit</button>
-            </div>
-            <div class="d-flex justify-content-center mt-4">
-              <a type="button" class="btn btn-light btn-lg" @click="goBack()">Cancel</a>
-            </div>
+              <div class="d-flex justify-content-end pt-3">
+                                      <a type="button" class="btn btn-light btn-lg" @click="goBack()">Cancel</a>
+                                      <a name="registerBtn" type="submit" class="btn btn-warning btn-lg ms-2" @click="addUser()">Add</a>
+                                  </div>
           </div>
         </div>
         </div>
@@ -112,13 +110,10 @@ export default {
             }
         },
         goBack() {
-            this.$router.push('/login')
+            this.$router.push('/admin/manageUsers')
         }
-
     },
-
 }
-
 </script>
 <style lang="">
 
