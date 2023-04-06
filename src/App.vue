@@ -13,6 +13,8 @@ export default {
     return {
       store: useUserSessionStore()
     };
+  },mounted() {
+    this.store.localLogin();
   }
 };
 </script>

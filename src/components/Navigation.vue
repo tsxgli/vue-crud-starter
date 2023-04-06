@@ -4,7 +4,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
           <!-- Add a router link to the homepage (don't use the a tag!) -->
-          <router-link to="/" v-if="this.store.isAdminComputed" class="nav-link" active-class="active">Home</router-link>
+          <router-link to="/" v-if="this.store.isUserAdmin.isAdmin" class="nav-link" active-class="active">Home</router-link>
         </li>
         <li class="nav-item"><router-link to="/movies" class="nav-link" active-class="active">Movies</router-link></li>
         <li class="nav-item">
