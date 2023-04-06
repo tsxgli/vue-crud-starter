@@ -5,7 +5,7 @@
 
         <div class="row">
           <div v-for="movie in movies" class="col" >
-            <movie-item  :key="movie.id" :movie="movie" @movieDeleted="reloadMovies"/>
+            <movie-item  :key="movie.id" :movie="movie"/>
           </div>
         </div>
       </div>
@@ -13,7 +13,7 @@
   </template>
 <script>
 import MovieItem from "./MovieItem.vue";
-import axios from "axios";
+import axios from '../../axios-auth.js';
 
 export default {
   name: "ProductList",
@@ -29,7 +29,7 @@ export default {
     this.fetchMovies(); 
 },methods:{
   fetchMovies() {
-      axios.get('http://localhost/movies')
+      axios.get('/movies')
         .then(response => {
           this.movies = response.data;
           console.log(response.data);

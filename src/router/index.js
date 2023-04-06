@@ -10,9 +10,9 @@ import Genre from '../components/movies/Genre.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/login/register/Register.vue';
 import Cart from '../components/checkout/Cart.vue';
-import CreateUser from '../components/login/register/CreateUser.vue';
-import EditUser from '../components/login/register/EditUser.vue';
-import ManageUsers from '../components/login/register/ManageUsers.vue';
+import CreateUser from '../components/admin/CreateUser.vue'
+import EditUser from '../components/admin/EditUser.vue';
+import ManageUsers from '../components/admin/ManageUsers.vue';
 
 
 const routes = [
@@ -26,9 +26,9 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/cart', component: Cart },
   { path: '/register', component: Register},
-  { path: '/createuser', component: CreateUser},
+  { path: '/admin/createuser', component: CreateUser},
   { path: '/edituser/:id', component: EditUser, props: true  },
-  { path: '/manageusers', component: ManageUsers},
+  { path: '/admin/manageusers', component: ManageUsers},
 ];
 
 const router = createRouter({

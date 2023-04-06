@@ -6,8 +6,8 @@
       <div class="col-md-8 col-lg-6">
         <div class="card my-4">
           <div class="card-body">
-            <h3 class="mb-4 text-center">Register!</h3>
-            <div class="alert alert-danger" id="error-message">{{ errorMessage }}</div>
+            <h3 class="mb-4 text-center">Create User</h3>
+            <div class="alert alert-danger" v-if="errorMessage" id="error-message">{{ errorMessage }}</div>
             <div class="form-group">
               <label for="firstnameInput">First Name</label>
               <input type="text" id="firstnameInput" v-model="this.firstname" class="form-control" name="firstnameRegister" required placeholder="Enter your first name">
@@ -39,6 +39,14 @@
               <label for="birthdateInput">BirthDate</label>
               <input type="date" id="birthdateInput" v-model="this.birthdate" class="form-control" name="birthdateRegister" required placeholder="Enter your birthdate">
             </div>
+            <div class="form-group">
+              <label for="isAdminInput">User Type</label>
+              <br>
+              <select name="isAdmin" v-model="this.isAdmin" id="isAdmin">
+                <option value="0">User</option>
+                <option value="1">Admin</option>
+              </select>
+             
             <div class="d-flex justify-content-center">
               <button name="registerBtn" type="submit" class="btn btn-warning btn-lg mt-4" @click="addUser()">Submit</button>
             </div>
@@ -47,16 +55,16 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
     </div>
   </div>
 </form>
-
     </div>
 </template>
 <script>
 
-import axios from '../../../axios-auth.js';
+import axios from '../../axios-auth.js';
 export default {
     name: "Create User",
     data() {

@@ -1,24 +1,4 @@
 <template>
-  <!-- <section>
-    <div class="container">
-      <div class="row">
-        <div class="alert alert-danger">{{ errorMessage }}</div>
-        <div class="col-md-6">
-          <form>
-            <div class="mb-3">
-              <label for="inputemail" class="form-label">email</label>
-              <input id="inputemail" v-model="email" type="text" class="form-control" />
-            </div>
-            <div class="mb-3">
-              <label for="inputPassword" class="form-label">Password</label>
-              <input type="password" v-model="password" class="form-control" id="inputPassword" />
-            </div>
-            <button type='button' class="btn btn-primary" @click="login">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section> -->
   <section class="vh-100 gradient-custom">
     <div class="alert alert-danger">{{ errorMessage }}</div>
     <div class="container py-5 h-100">
@@ -58,7 +38,6 @@
                   <a @click="register()" class="text-white-50 fw-bold">Sign Up</a>
                 </p>
               </div>
-
             </div>
           </div>
         </div>
@@ -69,7 +48,7 @@
 
 <script>
 
-import axios from '../axios-auth.js';
+
 import { useUserSessionStore } from '../stores/usersession';
 export default {
   setup() {
@@ -88,8 +67,10 @@ export default {
   methods: {
     login() {
       this.store.login(this.email, this.password).then(() => {
-        if(this.store.isAuthenticated) {
+        if (this.store.isAuthenticated) {
           this.$router.push('/movies');
+        } else {
+          this.errorMessage = "Login failed";
         }
 
       }).catch((error) => {

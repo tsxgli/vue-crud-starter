@@ -16,12 +16,12 @@
                             </span>
                         </div>
                     </div>
-                </router-link>
+            </router-link>
         </div>
     </div>
 </template> 
 <script>
-import axios from "axios";
+import axios from '../../axios-auth.js';
 export default {
     name: "MovieItem",
     props: {
@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         deleteMovie(id) {
-            axios.delete('http://localhost/movies/' + id)
+            axios.delete('/movies/' + id)
                 .then(response => {
                     console.log(response);
                     this.$emit('movieDeleted');

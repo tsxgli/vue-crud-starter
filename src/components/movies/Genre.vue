@@ -14,7 +14,7 @@
    
   <script>
   import MovieItem from "./MovieItem.vue";
-  import axios from 'axios';
+  import axios from '../../axios-auth.js';
   
   export default {
     name: "Genres",
