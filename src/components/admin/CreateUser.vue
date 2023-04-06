@@ -93,7 +93,7 @@ export default {
                 isAdmin: this.isAdmin
             })
                 .then(response => {
-                    alert("You have successfully registered!")
+                    alert("Added user succesfully!")
                     console.log(response)
                     this.$router.push('/login')
                 })

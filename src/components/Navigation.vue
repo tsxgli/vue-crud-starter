@@ -4,7 +4,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
           <!-- Add a router link to the homepage (don't use the a tag!) -->
-          <router-link to="/" v-if="this.store.isUserAdmin.isAdmin" class="nav-link" active-class="active">Home</router-link>
+          <router-link to="/" v-if="!this.store.isUserAdmin.isAdmin" class="nav-link" active-class="active">Home</router-link>
         </li>
         <li class="nav-item"><router-link to="/movies" class="nav-link" active-class="active">Movies</router-link></li>
         <li class="nav-item">
@@ -28,7 +28,7 @@
           aria-haspopup="true" aria-expanded="false">
           <img src="https://cdn.iconscout.com/icon/free/png-256/account-269-866236.png" alt="Login icon" width="30">
         </router-link>
-       
+
       </div>
     </div>
 
@@ -43,9 +43,8 @@ export default {
   name: "Navigation",
   setup() {
     const store = useUserSessionStore();
-
     const isAdminComputed = computed(() => {
-      if (store.isAuthenticated) {
+      if (store.isUserAdmin) {
         return store.isAdmin;
       } else {
         return true; // or false, depending on your requirements
@@ -64,7 +63,13 @@ export default {
     logout() {
       this.store.logout();
       this.$router.push("/");
-    }
+    },
   },
+  watch: {
+
+    'store.isUserAdmin.isAdmin'(newVal) {
+      this.isAdminComputed = newVal;
+    }
+  }
 };
 </script>
