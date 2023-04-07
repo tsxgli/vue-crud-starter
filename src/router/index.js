@@ -16,6 +16,7 @@ import ManageUsers from '../components/admin/ManageUsers.vue';
 import CreateMovie from '../components/admin/CreateMovie.vue';
 import ManageMovies from '../components/admin/ManageMovies.vue';
 import EditMovie from '../components/admin/EditMovie.vue';
+import Function from '../components/admin/Function.vue'; 
 
 const routes = [
   { path: '/', component: Login },
@@ -34,6 +35,7 @@ const routes = [
   { path: '/admin/createmovie', component: CreateMovie},
   { path: '/admin/managemovies', component: ManageMovies},
   { path: '/admin/editmovie/:id', component: EditMovie, props: true  },
+  { path: '/admin/index', component: Function},
 
 ];
 

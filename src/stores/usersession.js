@@ -61,6 +61,7 @@ export const useUserSessionStore = defineStore("userSession", {
     logout() {
       this.jwt = "";
       this.email = "";
+      this.userId = "";
       localStorage.removeItem("jwt");
       localStorage.removeItem("email");
       delete axios.defaults.headers.common["Authorization"];

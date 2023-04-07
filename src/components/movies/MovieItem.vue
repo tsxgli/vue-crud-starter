@@ -6,7 +6,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{movie.title}}</h5>
                             <div class="card-body">
-                                <img :src="'/images/' + movie.image" alt="{{movie.title}}"
+                                <img :src="'http://localhost/images/' + movie.image" alt="{{movie.title}}"
                                     class="img-fluid " style="min-height: 10vh;">
                             </div>
                         </div>

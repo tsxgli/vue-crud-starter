@@ -7,7 +7,7 @@
                   <div class="card card-registration my-4">
                       <div class="row g-0">
                           <div class="col-xl-6 d-none d-xl-block">
-                              <img src="/images/wmovies.png" alt="Sample photo" class="img-fluid"
+                              <img src="http://localhost/images/wmovies.png" alt="Sample photo" class="img-fluid"
                                   style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                           </div>
                           <div class="col-xl-6">

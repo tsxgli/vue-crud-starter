@@ -3,7 +3,7 @@
         <div class="row">
             <h1 class="text-center">{{ movie.title }}</h1>
             <div class="col">
-                <img :src="'/images/' + movie.image" :alt="movie.title" class="img-fluid" style="min-height: 10vh;">
+                <img :src="'http://localhost/images/' + movie.image" :alt="movie.title" class="img-fluid" style="min-height: 10vh;">
             </div>
             <div class="col">
                 <h3 class="pr-1">Description</h3>
