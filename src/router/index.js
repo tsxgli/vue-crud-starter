@@ -13,7 +13,9 @@ import Cart from '../components/checkout/Cart.vue';
 import CreateUser from '../components/admin/CreateUser.vue'
 import EditUser from '../components/admin/EditUser.vue';
 import ManageUsers from '../components/admin/ManageUsers.vue';
-
+import CreateMovie from '../components/admin/CreateMovie.vue';
+import ManageMovies from '../components/admin/ManageMovies.vue';
+import EditMovie from '../components/admin/EditMovie.vue';
 
 const routes = [
   { path: '/', component: Login },
@@ -29,6 +31,10 @@ const routes = [
   { path: '/admin/createuser', component: CreateUser},
   { path: '/admin/editUser/:id', component: EditUser, props: true  },
   { path: '/admin/manageusers', component: ManageUsers},
+  { path: '/admin/createmovie', component: CreateMovie},
+  { path: '/admin/managemovies', component: ManageMovies},
+  { path: '/admin/editmovie/:id', component: EditMovie, props: true  },
+
 ];
 
 const router = createRouter({
