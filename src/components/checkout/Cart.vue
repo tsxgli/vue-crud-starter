@@ -44,7 +44,7 @@
                                       <h5 class="text-uppercase mb-3">Delivery</h5>
                                       <div class="mb-5">
                                           <div class="form-outline">
-                                              <input type="email" name="checkoutEmail" id="checkoutEmailInput"
+                                              <input type="email" name="checkoutEmail" v-model="email" id="checkoutEmailInput"
                                                   class="form-control form-control-lg" required />
                                               <label class="form-label" for="checkoutEmailInput">Enter your
                                                   email</label>
@@ -70,7 +70,7 @@
                                           </h5>
                                           <h5></h5>
                                       </div>
-                                          <button name="payBtn" @click="checkout()" class="btn btn-dark btn-block btn-lg"
+                                          <button name="payBtn" @click="checkout" class="btn btn-dark btn-block btn-lg"
                                               data-mdb-ripple-color="dark">Pay</button>
                                   </div>
                               </div>
@@ -83,7 +83,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from '../../axios-auth'
 
 export default {
     name: "Cart",
@@ -100,26 +100,61 @@ export default {
                 price: 0,
                 image: '',
             },
+            order: {
+                movieID: 0,
+                userID: 0,
+                dateOrdered: '',
+            },
+            email: '',
+
         };
     },
 
     methods: {
         fetchMovie() {
             const movieId = localStorage.getItem('movieId');
-            axios.get("http://localhost/movies/" + movieId).then((response) => {
-                this.movie = response.data[0];
-                console.log(response.data);
-            });
+            axios.get('/movies/', movieId)
+                .then(response => {
+                    this.movie = response.data[0];
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
         checkout() {
-            axios.post("http://localhost/sendMail", this.movie).then((response) => {
-                console.log(response.data);
-            });
+            this.sendMail();
+            this.postOrder();
+            alert("Your order has been placed, you will get an email confirmation!");
         },
         backToShop() {
             window.history.back();
         },
+        sendMail() {
+            axios.post('/sendEmail', this.email)
+                .then(response => {
+                    console.log(response.data);
+                    console.log("email is ",this.email);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, postOrder() {
+            this.order.userID = localStorage.getItem('id');
+            this.order.movieID = localStorage.getItem('movieId');
+   
+            this.order.dateOrdered = new Date().toISOString().slice(0,10);
 
+            axios.post('/orders/', this.order)
+                .then(response => {
+                    this.order = response.data[0];
+
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     },
     mounted() {
         this.fetchMovie();

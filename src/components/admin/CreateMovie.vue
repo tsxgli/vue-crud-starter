@@ -48,7 +48,7 @@
         </div>
 </template>
 <script>
-import { formToJSON } from 'axios';
+
 import axios from '../../axios-auth.js';
 export default {
     data() {
@@ -82,7 +82,6 @@ export default {
             }
             formData.append('movieDetails', JSON.stringify(movieDetails));
 
-        
             axios.post('/movies', formData)
             .then(response => {
                 console.log(response);

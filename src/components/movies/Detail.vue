@@ -72,7 +72,7 @@ export default {
         },
         addToCart() {
             this.$router.push('/cart'); // navigate to /cart
-            localStorage.clear();
+            localStorage.removeItem('movieId');
             localStorage.setItem('movieId', this.$route.params.id);
         },
     },

@@ -22,7 +22,7 @@ export const useUserSessionStore = defineStore("userSession", {
         // Call the checkAdmin method to determine the user's admin status
         try {
           const response = await this.checkAdmin(this.jwt, this.userId);
-          this.isAdmin = response.data;
+          this.isAdmin = response.data.isAdmin;
           console.log("Admin status: " + response.data.isAdmin);
         } catch (error) {
           console.error(error);
@@ -41,6 +41,14 @@ export const useUserSessionStore = defineStore("userSession", {
             this.jwt = response.data.jwt;
             this.email = response.data.email;
             this.userId = response.data.id;
+
+            try {
+              const response = this.checkAdmin(this.jwt, this.userId);
+              this.isAdmin = response.data.isAdmin;
+              console.log("Admin status: " + response.data.isAdmin);
+            } catch (error) {
+              console.error(error);
+            }
 
             localStorage.setItem("jwt", this.jwt);
             localStorage.setItem("email", this.email);
