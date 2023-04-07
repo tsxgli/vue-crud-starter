@@ -7,38 +7,38 @@
           <div class="card-body">
                     <div class="form-group">
                         <label for="addImage">Image</label>
-                        <input type="file" class="form-control-file" id="addImage" name="addImage" required>
+                        <input type="file" class="form-control-file" v-model="" id="addImage" name="addImage" required>
                     </div>
                     <div class="form-group">
                         <label for="addTitle">Title</label>
-                        <input type="text" class="form-control" id="addTitle" name="addTitle" required>
+                        <input type="text" class="form-control" v-model="movie.title" id="addTitle" name="addTitle" required>
                     </div>
                     <div class="form-group">
                         <label for="addDescription">Description</label>
-                        <input type="text" class="form-control" id="addDescription" name="addDescription" required>
+                        <input type="text" class="form-control" v-model="movie.description" id="addDescription" name="addDescription" required>
                     </div>
                     <div class="form-group">
                         <label for="addDirector">Director</label>
-                        <input type="text" class="form-control" id="addDirector" name="addDirector" required>
+                        <input type="text" class="form-control" id="addDirector" v-model="movie.director" name="addDirector" required>
                     </div>
                     <div class="form-group">
                         <label for="addDateProduced">Date Produced</label>
-                        <input type="date" class="form-control" id="addDateProduced" name="addDateProduced" required>
+                        <input type="date" class="form-control" id="addDateProduced" v-model="movie.dateProduced" name="addDateProduced" required>
                     </div>
                     <div class="form-group">
                         <label for="addGenre">Genre</label>
-                        <input type="text" class="form-control" id="addGenre" name="addGenre" required>
+                        <input type="text" class="form-control" id="addGenre" v-model="movie.genre" name="addGenre" required>
                     </div>
                     <div class="form-group">
                         <label for="addRating">Rating</label>
-                        <input type="text" class="form-control" id="addRating" name="addRating" required>
+                        <input type="text" class="form-control" id="addRating" v-model="movie.rating" name="addRating" required>
                     </div>
                     <div class="form-group">
                         <label for="addPrice">Price</label>
-                        <input type="text" class="form-control" id="addPrice" name="addPrice" required>
+                        <input type="text" class="form-control" id="addPrice" v-model="movie.price" name="addPrice" required>
                     </div>
                     <div class="form-group">
-                        <br><button type="submit" class="btn btn-warning" id="addMovieBtn" name="addMovieBtn">Add movie</button>
+                        <br><a type="submit" class="btn btn-warning" @click="addMovie()" id="addMovieBtn" name="addMovieBtn">Add movie</a>
                     </div>
                 </div>
             </div>
